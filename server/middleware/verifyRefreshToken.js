@@ -6,7 +6,7 @@ async function verifyRefreshToken(req, res, next) {
     // проверяем куку на наличие токена
     const { refresh } = req.cookies;
     console.log(refresh);
-    let { user } = jwt.verify(refresh, process.env.REFRESH_TOKEN);
+    let { user } = jwt.verify(refresh, 'R');
     console.log(123);
     // опционально
     user = await User.findOne({
