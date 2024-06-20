@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Basket extends Model {
     /**
@@ -9,21 +7,25 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({User, BasketLine}) {
-      this.hasOne(User, {
-        foreignKey:"userId"
+    static associate({ Card, BasketLine, User }) {
+      this.belongsToMany(Card, {
+        through: BasketLine,
+        foreignKey: 'basketId',
+        otherKey: 'cardId',
       }),
-      this.hasMany(BasketLine, {
-        foreignKey: "basketId"
-      })
+        this.hasOne(User, {
+          foreignKey: 'userId',
+        });
     }
   }
-  Basket.init({
-    userId: DataTypes.INTEGER,
-    cardId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Basket',
-  });
+  Basket.init(
+    {
+      userId: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: 'Basket',
+    }
+  );
   return Basket;
 };
