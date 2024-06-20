@@ -1,25 +1,25 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Cards', {
+    await queryInterface.createTable("Cards", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       img: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       wearRate: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       city: {
         type: Sequelize.STRING,
@@ -29,25 +29,22 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
-          key: 'id',
+          key: "id",
         },
-     
-           onDelete: 'CASCADE',
-           onUpdate: 'CASCADE',
-     
-
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       createdAt: {
         allowNull: true,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: true,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Cards');
-  }
+    await queryInterface.dropTable("Cards");
+  },
 };

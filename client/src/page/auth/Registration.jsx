@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-function Registration({ title }) {
-  const navigate = useNavigate();   //МОЖЕТ БЫТЬ ОШИБКА
+import { useNavigate } from "react-router-dom";
+import requestAxios, { setAccessToken } from "../../services/axios";
+
+function Registration() {
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,19 +24,21 @@ function Registration({ title }) {
         return;
       }
       if (password.trim() === cpassword.trim()) {
+      
         const { data } = await requestAxios.post("/auth/registration", {
           name,
           email,
           password,
           city,
         });
+        console.log(data);
         if (data.message === "success") {
           setUser(data.user);
           setAccessToken(data.accessToken);
           navigate("/");
         }
         return;
-      }
+      } 
       setError("Пароли не совпадают");
       return;
     } catch ({ message }) {
@@ -43,7 +48,7 @@ function Registration({ title }) {
   return (
     <div>
       <h1>Регистрация</h1>
-      <form onSabmit={onHandleSubmit}>
+      <form onSubmit={onHandleSubmit}>
         <label htmlFor="name">
           <input
             type="text"
