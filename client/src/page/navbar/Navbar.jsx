@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import requestAxios, { setAccessToken } from "../../services/axios";
 import React from "react";
-function navbar({ title }) {
+function Navbar({user, title }) {
   const onHandleLOgout = async () => {
     const { data } = await requestAxios.get("/auth/logout");
     console.log(data);
@@ -13,8 +13,8 @@ function navbar({ title }) {
   return (
     <nav>
       <NavLink to="/">Главная</NavLink>
-      <NavLink to="/card">Магазин</NavLink>
-      <NavLink to="/basket">Корзина</NavLink>
+      <NavLink to="/cards">Магазин</NavLink>
+      <NavLink to="/baskets">Корзина</NavLink>
       {user ? (
         <button type="button" onClick={onHandleLOgout}></button>
       ) : (
@@ -27,4 +27,4 @@ function navbar({ title }) {
   );
 }
 
-export default navbar;
+export default Navbar;

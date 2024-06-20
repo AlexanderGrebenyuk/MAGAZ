@@ -1,38 +1,35 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Baskets', {
+    await queryInterface.createTable("Baskets", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
-          key: 'id',
+          key: "id",
         },
-     
-           onDelete: 'CASCADE',
-           onUpdate: 'CASCADE',
-     
-
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
 
       createdAt: {
         allowNull: true,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: true,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Baskets');
-  }
+    await queryInterface.dropTable("Baskets");
+  },
 };
