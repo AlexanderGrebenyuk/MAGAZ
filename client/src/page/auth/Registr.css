@@ -1,0 +1,87 @@
+/* Importing the Pokemon font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #3b4cca;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 400px;
+  text-align: center;
+}
+
+h1 {
+  color: #ff0000;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Press Start 2P', cursive;
+  background-color: transparent; /* Transparent background */
+  color: #3b4cca; /* Text color */
+}
+
+input::placeholder {
+  color: #3b4cca; /* Placeholder color */
+}
+
+button {
+  background-color: #ffcb05;
+  color: #3b4cca;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-family: 'Press Start 2P', cursive;
+}
+
+button:hover {
+  background-color: #ff9f05;
+  transform: scale(1.1);
+}
+
+span {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}

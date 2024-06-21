@@ -1,0 +1,88 @@
+/* FormAddCard.css */
+
+body {
+    font-family: 'Press Start 2P', cursive; /* Добавляем шрифт к body */
+    background: linear-gradient(135deg, #ffcc00, #ff0000, #0000ff);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    color: #fff;
+  }
+  
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .container {
+    background: rgba(255, 255, 255, 0.8);
+    /* background: white; */
+    border: 2px solid #3b4cca;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #ff0000;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input[type="text"], input[type="number"], input[type="img"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #3b4cca;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  button {
+    background-color: #ffcb05;
+    color: #3b4cca;
+    border: 2px solid #3b4cca;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  button:hover {
+    background-color: #ff9f05;
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    input[type="text"], input[type="number"], input[type="img"] {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+  }
+  
