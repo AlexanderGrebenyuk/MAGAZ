@@ -7,7 +7,7 @@ function CardItem({ user, card, setCards }) {
   // const [isUpdate, setIsUpdate] = useState(false);
 
   const onHandleDelete = async () => {
-    const { data } = await request.delete(`/cards/${card.id}`);
+    const { data } = await requestAxios.delete(`/cards/${card.id}`);
     if (data.message === "success") {
       setCards((prev) => prev.filter((delCard) => delCard.id !== card.id));
     }
@@ -18,6 +18,7 @@ function CardItem({ user, card, setCards }) {
   //     setCards((prev) => prev.filter((delCard) => delCard.id !== card.id));
   //   }
   // };
+
   return (
     <div className="card" key={card.id}>
       <img
@@ -29,7 +30,7 @@ function CardItem({ user, card, setCards }) {
       <p>{card.price}</p>
       <p>{card.city}</p>
 
-      {user && user.id === card.UserId && (
+      {user && user.id === card.userId && (
         <button type="button" onClick={onHandleDelete}>
           Удалить
         </button>

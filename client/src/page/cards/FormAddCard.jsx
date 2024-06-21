@@ -1,30 +1,30 @@
 import React, { useState } from "react";
-
+import requestAxios from "../../services/axios";
 function FormAddCard({ setCards }) {
   const [name, setName] = useState("");
-  const [img, setImg] = useState();
+  const [img, setImg] = useState("");
   const [price, setPrice] = useState(0);
   const [wearRate, setWearRate] = useState("");
   const [city, setCity] = useState("");
-  const [userId, setUserId] = useState(1);
+  //   const [userId, setUserId] = useState(0);
+
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await requestAxios.post("/movies", {
+    const { data } = await requestAxios.post("/cards", {
       name,
       img,
       price,
       wearRate,
       city,
-      userId,
     });
+
     if (data.message === "success") {
       setCards((prev) => [...prev, data.card]);
       setName("");
-      setImg(0);
+      setImg("");
       setPrice("");
       setWearRate("");
       setCity("");
-      setUserId(1);
     }
   };
 
@@ -36,38 +36,38 @@ function FormAddCard({ setCards }) {
           type="text"
           value={name}
           placeholder="name"
-          nChange={(e) => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <input
           type="img"
           value={img}
           placeholder="img"
-          nChange={(e) => setImg(e.target.value)}
+          onChange={(e) => setImg(e.target.value)}
         />
         <input
           type="number"
           value={price}
           placeholder="price"
-          nChange={(e) => setPrice(e.target.value)}
+          onChange={(e) => setPrice(e.target.value)}
         />
         <input
           type="text"
           value={wearRate}
           placeholder="wearRate"
-          nChange={(e) => setWearRate(e.target.value)}
+          onChange={(e) => setWearRate(e.target.value)}
         />
         <input
           type="text"
           value={city}
           placeholder="city"
-          nChange={(e) => setCity(e.target.value)}
+          onChange={(e) => setCity(e.target.value)}
         />
-        <input
+        {/* <input
           type="text"
           value={userId}
           placeholder="name"
-          nChange={(e) => userId(e.target.value)}
-        />
+          onChange={(e) => userId(e.target.value)}
+        /> */}
         <button type="submit">создать карточку</button>
       </form>
     </div>

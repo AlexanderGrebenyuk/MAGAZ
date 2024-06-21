@@ -14,7 +14,6 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const axiosCards = async () => {
-    console.log("asd");
     const { data } = await requestAxios.get("/cards");
     if (data.message === "success") {
       setCards(data.cards);
@@ -51,7 +50,10 @@ function App() {
             path="/authorization"
             element={<Authorization setUser={setUser} />}
           />
-          <Route path="/profile" element={<Profile cards={cards} />} />
+          <Route
+            path="/profile"
+            element={<Profile cards={cards} setCards={setCards} />}
+          />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </div>
