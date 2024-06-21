@@ -7,6 +7,7 @@ import Cards from "../page/cards/Cards";
 import Registration from "../page/auth/Registration";
 import Authorization from "../page/auth/Authorization";
 import Navbar from "../page/navbar/Navbar";
+import Profile from "../page/profile/Profile";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -15,14 +16,12 @@ function App() {
   const axiosCards = async () => {
     console.log("asd");
     const { data } = await requestAxios.get("/cards");
-    console.log(data);
     if (data.message === "success") {
       setCards(data.cards);
     }
   };
   const axiosCheckUser = async () => {
     const { data } = await requestAxios.get("/tokens/refresh");
-    console.log(data);
     if (data.message === "success") {
       setUser(data.user);
       setAccessToken(data.accessToken);
@@ -31,7 +30,6 @@ function App() {
 
   useEffect(() => {
     axiosCards();
-
     axiosCheckUser();
   }, []);
 
@@ -43,7 +41,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route
             path="/cards"
-            element={<Cards cards={cards} setCards={setCards} />}
+            element={<Cards cards={cards} setCards={setCards} user={user} />}
           />
           <Route
             path="/registration"
@@ -53,6 +51,7 @@ function App() {
             path="/authorization"
             element={<Authorization setUser={setUser} />}
           />
+          <Route path="/profile" element={<Profile cards={cards} />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </div>
