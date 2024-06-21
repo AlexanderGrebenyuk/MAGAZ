@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Basket } = require("../../db/models");
+const { User } = require("../../db/models");
 const bcrypt = require("bcrypt");
 const generateTokens = require("../../utils/authUtils");
 
@@ -17,7 +17,7 @@ router.post("/registration", async (req, res) => {
       return;
     }
 
-    console.log("asd");
+   
     const userInDb = await User.findOne({ where: { email } });
     if (userInDb) {
       res
@@ -39,14 +39,10 @@ router.post("/registration", async (req, res) => {
     const { accessToken, refreshToken } = generateTokens({ user });
 
     if (user) {
-      const {userId} = req.body
-      console.log('+++++',user.dataValues.id);
-      const basket = await Basket.create({userId: user.dataValues.id})
-      console.log(basket, "hjkl;'\cvbn");
       res
         .status(201)
         .cookie("refresh", refreshToken, { httpOnly: true })
-        .json({ message: "success", user, accessToken, basket });
+        .json({ message: "success", user, accessToken });
       return;
     }
 
