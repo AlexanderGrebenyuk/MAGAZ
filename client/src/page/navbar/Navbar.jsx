@@ -18,9 +18,14 @@ function Navbar({ user, title, setUser }) {
       <NavLink to="/profile">Личный кабинет</NavLink>
 
       {user ? (
-        <button type="button" onClick={onHandleLOgout}>
-          Выйти
-        </button>
+        <>
+          {/* Добавила */}
+          <NavLink to="/baskets">Корзина</NavLink>
+
+          <button type="button" onClick={onHandleLOgout}>
+            Выйти
+          </button>
+        </>
       ) : (
         <>
           <NavLink to="/registration">Регистрация</NavLink>
