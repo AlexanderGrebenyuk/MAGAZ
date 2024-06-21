@@ -10,7 +10,7 @@ function CardItem({ card, setCards }) {
     }
   };
   return (
-    <div key={card.id}>
+    <div className="card" key={card.id}>
       <img
         src={`http://localhost:3000${card.img}`}
         alt="foto"
