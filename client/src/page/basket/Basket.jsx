@@ -4,8 +4,19 @@ import BasketItem from './BasketItem';
 
 
 function Basket({ cards, user, basket, setBasket }) {
-    console.log(basket);
-    
+  // const[basketItem, setBasketItem] = useState([])
+
+  // const axiosItemBasket = async () => {
+  //   const { data } = await requestAxios.get("/baskets");
+  //   console.log(data);
+  //   if (data.message === "success") {
+  //     setBasketItem(data.basketCards);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   axiosItemBasket()
+  // }, []);
     
   return (
     <div>

@@ -93,12 +93,12 @@ router.delete(
         where: { userId: user.id },
       });
       const basketLine = await BasketLine.findOne({
-        where: { id: basketLinesId },
+        where: { basketId: basketLinesId },
       });
-
+      console.log(basketLine);
       if (basket && basketLine) {
         const result = await BasketLine.destroy({
-          where: { id: basketLinesId },
+          where: { basketId: basketLinesId },
         });
         if (result > 0) {
           res.status(200).json({ message: "success", result });
