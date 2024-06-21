@@ -1,0 +1,65 @@
+/* NavBar.css */
+
+nav {
+    background-color: #ffcb05; /* Основной желтый цвет покемонов */
+    border-bottom: 2px solid #3b4cca; /* Синий цвет покемонов */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav a {
+    color: #3b4cca; /* Синий цвет покемонов */
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  nav a:hover {
+    color: #ff0000; /* Красный цвет покемонов */
+    transform: scale(1.1);
+  }
+  
+  nav button {
+    background-color: #ff0000; /* Красный цвет покемонов */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  nav button:hover {
+    background-color: #cc0000;
+    transform: scale(1.1);
+  }
+  
+  nav .nav-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+    }
+  
+    nav .nav-links {
+      flex-direction: column;
+      margin-top: 10px;
+    }
+  
+    nav a {
+      margin: 5px 0;
+    }
+  
+    nav button {
+      margin-top: 10px;
+    }
+  }
+  

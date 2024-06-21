@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import requestAxios, { setAccessToken } from "../../services/axios";
+import './Registr.css'
 
 function Registration({setUser}) {
   const navigate = useNavigate();
@@ -46,8 +47,8 @@ function Registration({setUser}) {
     }
   };
   return (
-    <div>
-      <h1>Регистрация</h1>
+    <div className="container" style={{marginTop: '30px', marginLeft: "300px"}}>
+      <h1 style={{fontSize: '30px'}}>Регистрация</h1>
       <form onSubmit={onHandleSubmit}>
         <label htmlFor="name">
           <input

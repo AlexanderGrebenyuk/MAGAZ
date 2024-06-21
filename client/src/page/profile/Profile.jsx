@@ -6,7 +6,7 @@ function Profile({ user, cards, setCards }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <h1>Profile</h1>
+      <p style={{fontSize: '40px'}}>Профиль</p>
       <button onClick={() => setIsOpen((prev) => !prev)}>
         {isOpen ? "закрыть форму" : "открыть форму"}
       </button>

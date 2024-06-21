@@ -1,9 +1,9 @@
 import React from'react';
+import requestAxios from '../../services/axios';
 function BasketItem({ user, bask, setBasket }) {
   
   const onHandleDeleteItem = async () => {
-    const { data } = await request.delete(`/baskets/basketLines/${bask.id}`);
-    console.log(data);
+    const { data } = await requestAxios.delete(`/baskets/basketLines/${bask.id}`);
     if (data.message === "success") {
       setBasket((prev) => prev.filter((el) => el.id !== bask.id));
     }

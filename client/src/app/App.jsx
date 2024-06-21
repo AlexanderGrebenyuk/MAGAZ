@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import requestAxios, { setAccessToken } from "../services/axios";
-import { Route, Routes } from "react-router-dom";
-import Main from "../page/main/Main";
-import Cards from "../page/cards/Cards";
-import Registration from "../page/auth/Registration";
-import Authorization from "../page/auth/Authorization";
-import Navbar from "../page/navbar/Navbar";
-import Profile from "../page/profile/Profile";
-import Basket from "../page/basket/Basket";
-
+import { useEffect, useState } from 'react';
+import './App.css';
+import requestAxios, { setAccessToken } from '../services/axios';
+import { Route, Routes } from 'react-router-dom';
+import Main from '../page/main/Main';
+import Cards from '../page/cards/Cards';
+import Registration from '../page/auth/Registration';
+import Authorization from '../page/auth/Authorization';
+import Navbar from '../page/navbar/Navbar';
+import Profile from '../page/profile/Profile';
+import Basket from '../page/basket/Basket';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -18,22 +17,22 @@ function App() {
   // console.log(basket);
 
   const axiosCards = async () => {
-    const { data } = await requestAxios.get("/cards");
-    if (data.message === "success") {
+    const { data } = await requestAxios.get('/cards');
+    if (data.message === 'success') {
       setCards(data.cards);
     }
   };
 
   const axiosCheckUser = async () => {
-    const { data } = await requestAxios.get("/tokens/refresh");
-    if (data.message === "success") {
+    const { data } = await requestAxios.get('/tokens/refresh');
+    if (data.message === 'success') {
       setUser(data.user);
       setAccessToken(data.accessToken);
     }
   };
   const axiosBasket = async () => {
-    const { data } = await requestAxios.get("/baskets");
-    if (data.message === "success") {
+    const { data } = await requestAxios.get('/baskets');
+    if (data.message === 'success') {
       setBasket(data.basketCards.Cards);
     }
   };
@@ -65,6 +64,8 @@ function App() {
           <Route
             path="/profile"
             element={<Profile cards={cards} setCards={setCards} />}
+          />
+          <Route
             path="/baskets"
             element={
               <Basket

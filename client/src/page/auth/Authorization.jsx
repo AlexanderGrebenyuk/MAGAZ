@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import requestAxios, { setAccessToken } from "../../services/axios";
+import './Registr.css'
 
 function Authorization({ setUser }) {
   const [email, setEmail] = useState();

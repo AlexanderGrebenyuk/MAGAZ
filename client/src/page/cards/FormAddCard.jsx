@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import requestAxios from "../../services/axios";
+import './FormAddCard.css'
+
 function FormAddCard({ setCards }) {
   const [name, setName] = useState("");
   const [img, setImg] = useState("");
@@ -29,7 +31,7 @@ function FormAddCard({ setCards }) {
   };
 
   return (
-    <div>
+    <div className="container" style={{marginTop: '20px', marginLeft: '350px', fontSize: '10px'}}>
       <h1>Выставить свою карточку</h1>
       <form onSubmit={onHandleSubmit}>
         <input

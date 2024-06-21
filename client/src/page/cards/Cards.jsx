@@ -5,7 +5,7 @@ function Cards({ user, cards, setCards }) {
   console.log(cards);
   return (
     <div>
-      <h1>Cards</h1>
+      <h1>Карточки</h1>
 
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
         {cards.map((card) => (
