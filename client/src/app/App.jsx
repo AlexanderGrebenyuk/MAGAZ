@@ -7,7 +7,9 @@ import Cards from "../page/cards/Cards";
 import Registration from "../page/auth/Registration";
 import Authorization from "../page/auth/Authorization";
 import Navbar from "../page/navbar/Navbar";
+import Profile from "../page/profile/Profile";
 import Basket from "../page/basket/Basket";
+
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -50,7 +52,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route
             path="/cards"
-            element={<Cards cards={cards} setCards={setCards} />}
+            element={<Cards cards={cards} setCards={setCards} user={user} />}
           />
           <Route
             path="/registration"
@@ -61,6 +63,8 @@ function App() {
             element={<Authorization setUser={setUser} />}
           />
           <Route
+            path="/profile"
+            element={<Profile cards={cards} setCards={setCards} />}
             path="/baskets"
             element={
               <Basket

@@ -1,14 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './Card.css'
+import "./Card.css";
+import requestAxios from "../../services/axios";
 
-function CardItem({ card, setCards }) {
+function CardItem({ user, card, setCards }) {
+  // const [isUpdate, setIsUpdate] = useState(false);
+
   const onHandleDelete = async () => {
-    const { data } = await request.delete(`/cards/${card.id}`);
+    const { data } = await requestAxios.delete(`/cards/${card.id}`);
     if (data.message === "success") {
       setCards((prev) => prev.filter((delCard) => delCard.id !== card.id));
     }
   };
+  // const onHandleGetBasket = async () => {
+  //   const { data } = await request.(`/cards/${card.id}`);
+  //   if (data.message === "success") {
+  //     setCards((prev) => prev.filter((delCard) => delCard.id !== card.id));
+  //   }
+  // };
+
   return (
     <div className="card" key={card.id}>
       <img
@@ -19,8 +29,13 @@ function CardItem({ card, setCards }) {
       <h3>{card.name}</h3>
       <p>{card.price}</p>
       <p>{card.city}</p>
-      <Link to={`/cards/${card.id}`}>Подробнее</Link>
-      <button onClick={onHandleDelete}>Удалить</button>
+
+      {user && user.id === card.userId && (
+        <button type="button" onClick={onHandleDelete}>
+          Удалить
+        </button>
+      )}
+      <button>Добавить в корзину</button>
     </div>
   );
 }
