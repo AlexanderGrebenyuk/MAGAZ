@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'basketId',
         otherKey: 'cardId',
       }),
-        this.hasOne(User, {
+        this.belongsTo(User, {
           foreignKey: 'userId',
         });
     }
