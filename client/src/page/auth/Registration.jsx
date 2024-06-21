@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import requestAxios, { setAccessToken } from "../../services/axios";
 
-function Registration() {
+function Registration({setUser}) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [name, setName] = useState("");
@@ -31,7 +31,7 @@ function Registration() {
           password,
           city,
         });
-        console.log(data);
+      
         if (data.message === "success") {
           setUser(data.user);
           setAccessToken(data.accessToken);

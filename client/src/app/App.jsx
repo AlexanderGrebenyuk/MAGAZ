@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import requestAxios, { setAccessToken } from "../services/axios";
 import { Route, Routes } from "react-router-dom";
@@ -19,21 +19,22 @@ function App() {
     if (data.message === "success") {
       setCards(data.cards);
     }
-
-    const axiosCheckUser = async () => {
-      const { data } = await requestAxios.get("/tokens/refresh");
-      if (data.message === "success") {
-        setUser(data.user);
-        setAccessToken(data.accessToken);
-      }
-    };
-
-    useEffect(() => {
-      axiosCards();
-      axiosCheckUser();
-    }, []);
-    console.log(cards);
   };
+  const axiosCheckUser = async () => {
+    const { data } = await requestAxios.get("/tokens/refresh");
+    console.log(data);
+    if (data.message === "success") {
+      setUser(data.user);
+      setAccessToken(data.accessToken);
+    }
+  };
+
+  useEffect(() => {
+    axiosCards();
+
+    axiosCheckUser();
+  }, []);
+
   return (
     <>
       <div>
@@ -44,8 +45,14 @@ function App() {
             path="/cards"
             element={<Cards cards={cards} setCards={setCards} />}
           />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/authorization" element={<Authorization />} />
+          <Route
+            path="/registration"
+            element={<Registration setUser={setUser} />}
+          />
+          <Route
+            path="/authorization"
+            element={<Authorization setUser={setUser} />}
+          />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </div>
