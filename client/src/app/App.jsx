@@ -14,8 +14,7 @@ function App() {
   const [user, setUser] = useState(undefined);
   const [cards, setCards] = useState([]);
   const [basket, setBasket] = useState([]);
-  // console.log(basket);
-
+  console.log(basket);
   const axiosCards = async () => {
     const { data } = await requestAxios.get('/cards');
     if (data.message === 'success') {
@@ -33,6 +32,7 @@ function App() {
   const axiosBasket = async () => {
     const { data } = await requestAxios.get('/baskets');
     if (data.message === 'success') {
+      // console.log('=====', data);
       setBasket(data.basketCards.Cards);
     }
   };
@@ -51,7 +51,14 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route
             path="/cards"
-            element={<Cards cards={cards} setCards={setCards} user={user} />}
+            element={
+              <Cards
+                basket={basket}
+                cards={cards}
+                setCards={setCards}
+                user={user}
+              />
+            }
           />
           <Route
             path="/registration"

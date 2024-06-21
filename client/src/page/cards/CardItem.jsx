@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 import requestAxios from "../../services/axios";
 
-function CardItem({ user, card, setCards }) {
+function CardItem({basket, user, card, setCards }) {
   // const [isUpdate, setIsUpdate] = useState(false);
-
+console.log('++',basket);
+console.log('---',card);
   const onHandleDelete = async () => {
     const { data } = await requestAxios.delete(`/cards/${card.id}`);
     if (data.message === "success") {
@@ -18,6 +19,14 @@ function CardItem({ user, card, setCards }) {
   //     setCards((prev) => prev.filter((delCard) => delCard.id !== card.id));
   //   }
   // };
+
+  const onHandleAddCard = async() => {
+    const {data} = await requestAxios.post('/baskets', {
+      cardId: card.id, basketId: basket.id
+    })
+    
+    console.log('=-=-=-=-=-',data);
+  }
 
   return (
     <div className="card" key={card.id}>
@@ -35,7 +44,7 @@ function CardItem({ user, card, setCards }) {
           Удалить
         </button>
       )}
-      <button>Добавить в корзину</button>
+      <button onClick={onHandleAddCard}>Добавить в корзину</button>
     </div>
   );
 }
