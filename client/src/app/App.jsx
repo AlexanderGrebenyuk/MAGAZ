@@ -7,32 +7,39 @@ import Cards from "../page/cards/Cards";
 import Registration from "../page/auth/Registration";
 import Authorization from "../page/auth/Authorization";
 import Navbar from "../page/navbar/Navbar";
+import Basket from "../page/basket/Basket";
 
 function App() {
   const [user, setUser] = useState(undefined);
   const [cards, setCards] = useState([]);
+  const [basket, setBasket] = useState([]);
+  // console.log(basket);
 
   const axiosCards = async () => {
-    console.log("asd");
     const { data } = await requestAxios.get("/cards");
-    console.log(data);
     if (data.message === "success") {
       setCards(data.cards);
     }
   };
+
   const axiosCheckUser = async () => {
     const { data } = await requestAxios.get("/tokens/refresh");
-    console.log(data);
     if (data.message === "success") {
       setUser(data.user);
       setAccessToken(data.accessToken);
     }
   };
+  const axiosBasket = async () => {
+    const { data } = await requestAxios.get("/baskets");
+    if (data.message === "success") {
+      setBasket(data.basketCards.Cards);
+    }
+  };
 
   useEffect(() => {
     axiosCards();
-
     axiosCheckUser();
+    axiosBasket();
   }, []);
 
   return (
@@ -52,6 +59,17 @@ function App() {
           <Route
             path="/authorization"
             element={<Authorization setUser={setUser} />}
+          />
+          <Route
+            path="/baskets"
+            element={
+              <Basket
+                user={user}
+                cards={cards}
+                basket={basket}
+                setBasket={setBasket}
+              />
+            }
           />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
