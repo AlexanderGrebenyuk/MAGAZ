@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const verifyAccessToken = require('../../middleware/verifyAccessToken');
+const verifyRefreshToken = require('../../middleware/verifyRefreshToken');
 const generateTokens = require('../../utils/authUtils');
 
-router.get('/refresh', verifyAccessToken, (req, res) => {
+router.get('/refresh', verifyRefreshToken, (req, res) => {
   const { user } = res.locals;
   const { accessToken, refreshToken } = generateTokens({ user });
   res
