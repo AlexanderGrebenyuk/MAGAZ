@@ -1,13 +1,13 @@
-const router = require("express").Router();
-const { Basket, Card, BasketLine } = require("../../db/models");
-const verifyAccessToken = require("../../middleware/verifyAccessToken");
+const router = require('express').Router();
+const { Basket, Card, BasketLine } = require('../../db/models');
+const verifyAccessToken = require('../../middleware/verifyAccessToken');
 
-router.get("/", verifyAccessToken, async (req, res) => {
+router.get('/', verifyAccessToken, async (req, res) => {
   try {
     const { user } = res.locals;
     if (user) {
       const basketCards = await Basket.findOne({
-        where: {userId: user.id},
+        where: { userId: user.id },
         include: [
           {
             model: Card,
@@ -18,10 +18,10 @@ router.get("/", verifyAccessToken, async (req, res) => {
         ],
       });
 
-      res.status(200).json({ message: "success", basketCards });
+      res.status(200).json({ message: 'success', basketCards });
       return;
     }
-    res.status(400).json({ message: "что-то пошло не так" });
+    res.status(400).json({ message: 'что-то пошло не так' });
   } catch ({ message }) {
     res.status(500).json({ error: message });
   }
@@ -57,7 +57,8 @@ router.get("/", verifyAccessToken, async (req, res) => {
 // });
 
 // создание BasketLine ДОБАВИТЬ ВЕРИФАЙ
-router.post("/", verifyAccessToken, async (req, res) => {
+router.post('/', verifyAccessToken, async (req, res) => {
+  console.log(1);
   const { cardId, basketId } = req.body;
   const { user } = res.locals;
   let basket;
@@ -71,10 +72,10 @@ router.post("/", verifyAccessToken, async (req, res) => {
         cardId,
         basketId: basket.id,
       });
-      res.status(201).json({ message: "success", basketLine });
+      res.status(201).json({ message: 'success', basketLine });
       return;
     }
-    res.status(400).json({ message: "что-то пошло не так" });
+    res.status(400).json({ message: 'что-то пошло не так' });
   } catch ({ message }) {
     res.status(500).json({ error: message });
   }
@@ -83,7 +84,7 @@ router.post("/", verifyAccessToken, async (req, res) => {
 //удаление BasketLine
 
 router.delete(
-  "/basketLines/:basketLinesId",
+  '/basketLines/:basketLinesId',
   verifyAccessToken,
   async (req, res) => {
     const { basketLinesId } = req.params;
@@ -93,19 +94,19 @@ router.delete(
         where: { userId: user.id },
       });
       const basketLine = await BasketLine.findOne({
-        where: { id: basketLinesId },
+        where: { basketId: basketLinesId },
       });
-
+      console.log(basketLine);
       if (basket && basketLine) {
         const result = await BasketLine.destroy({
-          where: { id: basketLinesId },
+          where: { basketId: basketLinesId },
         });
         if (result > 0) {
-          res.status(200).json({ message: "success", result });
+          res.status(200).json({ message: 'success', result });
           return;
         }
       }
-      res.status(400).json({ message: "что-то пошло не так" });
+      res.status(400).json({ message: 'что-то пошло не так' });
     } catch ({ message }) {
       res.status(500).json({ error: message });
     }

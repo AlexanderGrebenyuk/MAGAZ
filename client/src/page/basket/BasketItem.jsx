@@ -1,11 +1,30 @@
-import React from'react';
+import React, { useEffect, useState } from'react';
 import requestAxios from '../../services/axios';
+
+
+
 function BasketItem({ user, bask, setBasket }) {
+
+  const[basketItem, setBasketItem] = useState([])
+
+  const axiosItemBasket = async () => {
+    const { data } = await requestAxios.get("/baskets");
+    if (data.message === "success") {
+      setBasketItem(data.basketCards);
+    }
+  };
+
+  useEffect(() => {
+    axiosItemBasket()
+  }, []);
+
   
   const onHandleDeleteItem = async () => {
-    const { data } = await requestAxios.delete(`/baskets/basketLines/${bask.id}`);
+    console.log(basketItem);
+    const { data } = await requestAxios.delete(`/baskets/basketLines/${basketItem.id}`);
     if (data.message === "success") {
       setBasket((prev) => prev.filter((el) => el.id !== bask.id));
+
     }
   }
   return (
